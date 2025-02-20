@@ -1,0 +1,133 @@
+.preview-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .image-wrapper img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .bg-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .bg-option {
+    width: 100%;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .bg-option.selected {
+    border-color: #00ff00;
+    transform: scale(1.1);
+  }
+  
+  .confirm-button {
+    padding: 12px 30px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .confirm-button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
+  .bg-selector {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .preview-section {
+    margin-bottom: 30px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .preview-wrapper {
+    position: relative;
+    width: 100%;
+    height: 500px;
+  }
+  
+  .foreground {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    max-height: 80%;
+  }
+  
+  .background-options h3 {
+    color: #333;
+    margin: 20px 0 10px;
+  }
+  
+  .bg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+  }
+  
+  .bg-thumbnail {
+    aspect-ratio: 1;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .bg-thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  
+  .upload-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
+    border: 2px dashed #666;
+    font-size: 24px;
+    color: #666;
+  }
+  
+  .upload-option:hover {
+    background: #e0e0e0;
+  }
+  
+  .selected-background {
+    border-color: #2196F3 !important;
+    box-shadow: 0 0 10px rgba(33,150,243,0.4);
+  }
