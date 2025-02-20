@@ -3,7 +3,8 @@ import AdsComponent from "./components/AdsComponent";
 import CameraFlow from "./components/CameraFlow";
 import v1 from "./ads/video1.mp4";
 import v2 from "./ads/video2.mp4";
-import logo from "./ads/amul-logo.png"; 
+import logo from "./ads/amul-logo.png";
+
 
 function App() {
   const [showCamera, setShowCamera] = useState(false);
