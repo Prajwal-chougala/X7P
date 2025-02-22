@@ -50,11 +50,7 @@ export default function AdsComponent({ videoSrc, onGoClick, onVideoEnd }) {
       <video
         ref={preloadedVideoRef}
         src={nextVideoSrc}
-<<<<<<< HEAD
         preload="none"
-=======
-        preload="auto"
->>>>>>> upstream/main
         style={{ display: "none" }} // Keep it hidden
       />
 
