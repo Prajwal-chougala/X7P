@@ -12,6 +12,7 @@ const CameraFlow = ({ onComplete }) => {
   const [timer, setTimer] = useState(null);
   const webcamRef = useRef(null);
   const modelRef = useRef(null);
+  const [isFlipped, setIsFlipped] = useState(true);
 
   // Load models
   useEffect(() => {
@@ -103,8 +104,14 @@ const CameraFlow = ({ onComplete }) => {
       console.error('Detection failed:', error);
       clearInterval(countdown);
       setTimer(null);
-    }
+    };
+   
   };
+   const videoStyle = {
+      transform: isFlipped ? "scaleX(-1)" : "scaleX(1)", // Flip horizontally
+      // width: "100%",
+      // height: "auto",
+    };
 
   return (
     <div className="camera-flow">
@@ -114,7 +121,10 @@ const CameraFlow = ({ onComplete }) => {
             audio={false}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
+            style={videoStyle}
+            onDragStart={() => setIsFlipped(isFlipped)}
           />
+          
           <button 
             className="shutter-button" 
             onClick={capturePhoto}

@@ -9,6 +9,7 @@
   
   .camera-container {
     position: relative;
+    margin-top:50px;
     width: 100%;
     max-width: 800px;
     height: 80vh;

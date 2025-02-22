@@ -45,6 +45,7 @@
   }
   
   .confirm-button {
+    position: relative;
     padding: 12px 30px;
     background: #4CAF50;
     color: white;
@@ -130,4 +131,9 @@
   .selected-background {
     border-color: #2196F3 !important;
     box-shadow: 0 0 10px rgba(33,150,243,0.4);
+  }
+  .bg-selector{
+    position: relative;
+    width:400px;
+    height:100px;
   }
