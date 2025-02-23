@@ -120,51 +120,82 @@ const CameraFlow = ({ onComplete }) => {
       // height: "auto",
     };
 
-  return (
-    <div className="camera-flow">
-      {step === 1 && (
-        <div className="camera-container">
-          <Webcam
-            audio={false}
-            ref={webcamRef}
-            screenshotFormat="image/jpeg"
-            style={videoStyle}
-            onDragStart={() => setIsFlipped(isFlipped)}
-          />
-          
-          <button 
-            className="shutter-button" 
-            onClick={capturePhoto}
-            disabled={timer !== null}
-          >
-            <div className="shutter-circle">
-              {timer > 0 && <span className="countdown">{timer}</span>}
-            </div>
-            Capture
-          </button>
-        </div>
-      )}
-      
-      {step === 2 && (
-        <BackgroundSelector 
-          image={capturedImage}
-          filters={[image1, image2, image3, image4]}
-          onSelect={(bg) => {
-            setSelectedBg(bg);
-            setStep(3);
-          }}
-        />
-
-      )}
-                                                                                                     
-      {step === 3 && (
-        <SubmissionForm 
-          finalImage={`${capturedImage}|${selectedBg}`} 
-          onComplete={onComplete}
-        />
-      )}
-    </div>
-  );
-};
-
-export default CameraFlow;
+    return (
+      <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-[#1a1a2e] to-[#1a1a1a] p-4">
+        {step === 1 && (
+          <div className="relative w-full max-w-2xl mx-auto mt-8 md:mt-12 aspect-video overflow-hidden rounded-xl shadow-2xl bg-black">
+            <Webcam
+              audio={false}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+              className={`w-full h-full object-cover ${isFlipped ? '-scale-x-100' : ''}`}
+            />
+            
+            <button 
+              className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 
+                        w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 border-2 border-white
+                        transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/30
+                        disabled:opacity-50 disabled:transform-none disabled:shadow-none
+                        flex items-center justify-center"
+              onClick={capturePhoto}
+              disabled={timer !== null}
+            >
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-cyan-400 rounded-lg flex items-center justify-center">
+                {timer > 0 ? (
+                  <span className="text-white font-bold text-xl md:text-2xl animate-pulse">
+                    {timer}
+                  </span>
+                ) : (
+                  <svg 
+                    className="w-6 h-6 text-white"
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" 
+                    />
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" 
+                    />
+                  </svg>
+                )}
+              </div>
+            </button>
+          </div>
+        )}
+  
+        {step === 2 && (
+          <div className="w-full max-w-2xl mt-8 p-4">
+            <BackgroundSelector 
+              image={capturedImage}
+              filters={[image1, image2, image3, image4]}
+              onSelect={(bg) => {
+                setSelectedBg(bg);
+                setStep(3);
+              }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-4"
+            />
+          </div>
+        )}
+  
+        {step === 3 && (
+          <div className="w-full max-w-2xl mt-8 p-4">
+            <SubmissionForm 
+              finalImage={`${capturedImage}|${selectedBg}`} 
+              onComplete={onComplete}
+              className="space-y-4"
+            />
+          </div>
+        )}
+      </div>
+    );
+  };
+  
+  export default CameraFlow;
