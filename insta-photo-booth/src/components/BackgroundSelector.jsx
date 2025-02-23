@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './BackgroundSelector.css';
 
-const brandBackgrounds = [
-  './ads/icon.jpj',
-  'bg2.jpg',
-  'bg3.jpg',
-];
 
-export default function BackgroundSelector({ image, onSelect }) {
+
+export default function BackgroundSelector({ image, filters, onSelect }) {
+  const [step, setStep] = useState(1); // 1: Select filter, 2: Show result, 3: Show form
+
+
+
     const [processedImage, setProcessedImage] = useState(null);
     const [selectedBackground, setSelectedBackground] = useState(null);
     const [error, setError] = useState(null);
@@ -62,34 +62,63 @@ export default function BackgroundSelector({ image, onSelect }) {
 
   return (
     <div className="bg-selector">
-      <div className="preview-container">
-        {processedImage && (
+      {step === 1 && (
+        <>
+          <div className="filter-selection">
+            <h2>Select a Filter</h2>
+            <div className="bg-options">
+              {filters.map((bg, index) => (
+
+
+                <div 
+                  key={index}
+                  className={`bg-option ${selectedBackground === bg ? 'selected' : ''}`}
+                  onClick={() => {
+                    setSelectedBackground(bg);
+                    setStep(2);
+                  }}
+                  style={{ backgroundImage: `url(${bg})` }}
+                />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+
+      {step === 2 && processedImage && (
+        <div className="result-container">
           <div className="image-wrapper" style={{ 
             backgroundImage: selectedBackground ? `url(${selectedBackground})` : 'none'
           }}>
             <img src={processedImage} alt="processed" />
           </div>
-        )}
-      </div>
-      
-      <div className="bg-options">
-        {brandBackgrounds.map((bg, index) => (
-          <div 
-            key={index}
-            className={`bg-option ${selectedBackground === bg ? 'selected' : ''}`}
-            onClick={() => handleBackgroundSelect(bg)}
-            style={{ backgroundImage: `url(${bg})` }}
-          />
-        ))}
-      </div>
-      
-      <button 
-        className="confirm-button"
-        onClick={() => onSelect(combineImages(processedImage, selectedBackground))}
-        disabled={!selectedBackground}
-      >
-        Confirm Selection
-      </button>
+          
+          <div className="action-buttons">
+            <button 
+              className="back-button"
+              onClick={() => setStep(1)}
+            >
+              Back
+            </button>
+            <button 
+              className="next-button"
+              onClick={() => setStep(3)}
+            >
+              Next
+            </button>
+
+          </div>
+        </div>
+      )}
+
+      {step === 3 && (
+        <SubmissionForm 
+          finalImage={combineImages(processedImage, selectedBackground)}
+          onComplete={onSelect}
+        />
+      )}
+
+
     </div>
   );
 }

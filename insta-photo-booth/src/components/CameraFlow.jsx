@@ -5,6 +5,13 @@ import * as tf from '@tensorflow/tfjs';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import './CameraFlow.css';
+import image1 from '../ads/image1.jpeg';
+import image2 from '../ads/image2.png';
+import image3 from '../ads/image3.png';
+import image4 from '../ads/image4.webp';
+
+
+
 
 const CameraFlow = ({ onComplete }) => {
   const [step, setStep] = useState(1);
@@ -141,11 +148,13 @@ const CameraFlow = ({ onComplete }) => {
       {step === 2 && (
         <BackgroundSelector 
           image={capturedImage}
+          filters={[image1, image2, image3, image4]}
           onSelect={(bg) => {
             setSelectedBg(bg);
             setStep(3);
           }}
         />
+
       )}
                                                                                                      
       {step === 3 && (
