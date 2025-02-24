@@ -24,7 +24,7 @@ export default function BackgroundSelector({ image, filters, onSelect }) {
           },
           {
             headers: { 
-              'X-Api-Key': 'jWo9JUN75st3bq1CGDHUGs3F',
+              'X-Api-Key': 'RXjbXatCRQwGxJh6DzRXC9de',
               'Content-Type': 'application/json'
             },
             responseType: 'arraybuffer'

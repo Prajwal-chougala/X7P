@@ -5,10 +5,10 @@ import * as tf from '@tensorflow/tfjs';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import './CameraFlow.css';
-import image1 from '../ads/image1.jpeg';
-import image2 from '../ads/image2.png';
-import image3 from '../ads/image3.png';
-import image4 from '../ads/image4.webp';
+import image1 from '../ads/image1.jpg';
+import image2 from '../ads/image2.jpg';
+import image3 from '../ads/image3.jpg';
+import image4 from '../ads/image4.jpg';
 
 
 
