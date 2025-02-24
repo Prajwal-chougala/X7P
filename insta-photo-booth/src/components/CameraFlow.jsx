@@ -123,7 +123,7 @@ const CameraFlow = ({ onComplete }) => {
     return (
       <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-[#1a1a2e] to-[#1a1a1a] p-4">
         {step === 1 && (
-          <div className="relative w-full max-w-2xl mx-auto mt-8 md:mt-12 aspect-video overflow-hidden rounded-xl shadow-2xl bg-black">
+          <div className="absolute  w-full max-w-4xl mx-auto mt-8 md:mt-12 aspect-video overflow-hidden rounded-xl shadow-2xl bg-black">
             <Webcam
               audio={false}
               ref={webcamRef}
@@ -140,7 +140,7 @@ const CameraFlow = ({ onComplete }) => {
               onClick={capturePhoto}
               disabled={timer !== null}
             >
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-cyan-400 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 md:w-16 md:h-16   flex items-center justify-center">
                 {timer > 0 ? (
                   <span className="text-white font-bold text-xl md:text-2xl animate-pulse">
                     {timer}
